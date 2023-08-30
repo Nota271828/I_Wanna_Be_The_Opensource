@@ -1,4 +1,4 @@
-# I_Wanna_Be_The_opensource
+# I_Wanna_Be_The_Opensource
  This project was intended to make funny 2D Game(IWBTG fangame) with many people.
  If you want to make some stages, systems or gimmicks, you can cooperate to this project!
  If you want to change systems and the systems is not important, you can change you wishes.
