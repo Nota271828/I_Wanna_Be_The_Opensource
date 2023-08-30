@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+<canvas id="cvs1" width="640" height="480"></canvas>
+<script>
+
+const cvs2 = document.getElementById("cvs1");
+const ctx = cvs2.getContext("2d");
+
+var mainchara_right = false;
+var mainchara_left = false;
+var mainchara_jump = 0;
+var gameover = false;
+var maincharaX = 0;
+var maincharaY = 0;
+var maincharaWidth = 18;
+var maincharaHeight = 24;
+
+document.addEventListener("keydown",(e) => {
+	e.preventDefault();
+	if (e.key == "ArrowRight") {
+		mainchara_right = true;
+	}
+	if (e.key == "ArrowLeft") {
+		mainchara_left = true;
+	}
+	if (e.key == "Shift") {
+		mainchara_jump = 1;
+	}
+},{passive:false})
+
+document.addEventListener("keyup",(e) => {
+	e.preventDefault();
+	if (e.key == "ArrowRight") {
+		mainchara_right = false;
+	}
+	if (e.key == "ArrowLeft") {
+		mainchara_left = false;
+	}
+	if (e.key == "Shift") {
+		mainchara_jump = 0;
+	}
+},{passive:false})
+
+function update() {
+	if ((mainchara_right || mainchara_left)&& !(mainchara_right && mainchara_left)) { // if maincharaX move
+		if (mainchara_right == true) {
+			maincharaX += 3; // move right
+		} else {
+			maincharaX -= 3; // move left
+		}
+	}
+}
+
+function draw() {
+	update();
+	fillRectangle(0,0, cvs2.width,cvs2.height, 0,0,0,1); // fill in canvas
+	fillRectangle(maincharaX,maincharaY, maincharaWidth,maincharaHeight, 0,255,255,0.9); // draw mainchara
+}
+
+function fillRectangle(X, Y, sizeX, sizeY, r, g, b, alfa) {
+	ctx.fillStyle = "rgba("+r+","+g+","+b+","+alfa+")";
+	ctx.fillRect(X,Y,sizeX,sizeY);
+}
+
+document.body.style.overflow = "hidden";
+setInterval (draw,16);
+</script>
+</body>
+</html>
